@@ -4,21 +4,21 @@ import express from "express";
 
 const app = express();
 dotenv.config({
-    path:"./env"
+    path: "./env"
 })
 
 const port = process.env.PORT || 8000
 
 connectionDB()
-.then(() =>{
-    try {
-        app.listen(port, () => {
-            console.log("Server is running on port " + port)
-        })
-    } catch (error) {
-        console.log("Error while getting port", error)
-    }
-})
-.catch((error) => {
-    console.log("MongoDB db COnnection FAILED: " + error.message)
-})
+    .then(() => {
+        try {
+            app.listen(port, () => {
+                console.log("Server is running on port " + port)
+            })
+        } catch (error) {
+            console.log("Error while getting port", error)
+        }
+    })
+    .catch((error) => {
+        console.log("MongoDB db Connection FAILED: " + error.message)
+    })
