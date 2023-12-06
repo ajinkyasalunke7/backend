@@ -1,19 +1,19 @@
 import connectionDB from "./db/db.js";
 import dotenv from "dotenv"
-import express from "express";
+import {app} from "./app.js"
 
-const app = express();
 dotenv.config({
     path: "./env"
 })
 
 const port = process.env.PORT || 8000
 
+console.clear();
 connectionDB()
     .then(() => {
         try {
             app.listen(port, () => {
-                console.log("Server is running on port " + port)
+                console.log(` Server is running on port ${port}\n http://localhost:${port}/api/v1/users/register/`);
             })
         } catch (error) {
             console.log("Error while getting port", error)
