@@ -98,7 +98,7 @@ export const registerUser = asyncHandler(async (req, res) => {
 export const loginUser = asyncHandler(async (req, res) => {
     const { email, username, password } = req.body;
 
-    if (!username || !email) {
+    if (!(username || email)) {
         throw new ApiError(400, "Username or email is required");
     }
 
@@ -110,7 +110,7 @@ export const loginUser = asyncHandler(async (req, res) => {
         throw new ApiError(404, "User does not exists");
     }
 
-    const isPasswordValid = await User.isPasswordCorrect(password)
+    const isPasswordValid = await user.isPasswordCorrect(password)
 
     if (!isPasswordValid) {
         throw new ApiError(401, "Invalid user credentials");
@@ -128,8 +128,8 @@ export const loginUser = asyncHandler(async (req, res) => {
 
     return res
         .status(200)
-        .cookie("accessToken", accessToken.options)
-        .cookie("refreshToken", refreshToken.options)
+        .cookie("accessToken", accessToken,options)
+        .cookie("refreshToken", refreshToken,options)
         .json(
             new ApiResponse(
                 200,
@@ -166,6 +166,6 @@ export const logoutUser = asyncHandler(async (req, res) => {
     .clearCookie("accessToken", options)
     .clearCookie("refreshToken", options)
     .json(new ApiResponse(200,{},"User logged out"))
-    
+     
 
 })
