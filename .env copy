@@ -1,5 +1,5 @@
 PORT=8000
-MONGODB_URL=mongodb+srv://ajinkya:00000000@cluster0.qiaiyqj.mongodb.net
+MONGODB_URL=mongodb+srv://ajinkya:<Zero>@cluster0.qiaiyqj.mongodb.net
 CORS_ORIGIN=*
 PORT=8080
 ACCESS_TOKEN_SECRET=AJINKYA!@BackEnd
